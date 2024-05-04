@@ -1,6 +1,8 @@
 from Global import *
 from HUDUtils import FontManager
 from Menus import MenuESC
+from barre_de_vie import *
+from barre_de_sprint import *
 
 class HUD:
     def __init__(self, game):
@@ -12,6 +14,11 @@ class HUD:
         self.game.input.setKDownCallback(pygame.K_ESCAPE, self.toucheMenu)
 
         self.Lucida_Console = FontManager(fontName="Lucida Console", size=25)
+        
+        self.vie = barre_de_vie(self.game,WIDTH,HEIGHT)
+
+        self.sprint = barre_de_sprint(self.game,WIDTH,HEIGHT)
+
 
     def getSurface(self):
         return self.hudSurface
@@ -41,6 +48,8 @@ class HUD:
             0, HEIGHT - 100,
             pygame.Color(10,255,120))
         
+        self.vie.rendu(self.hudSurface)
+        self.sprint.rendu(int(self.game.joueur.stamina * 100),self.hudSurface)        
 
         #TODO: Barre de vie rendu -> blit sur hudSurface
 
