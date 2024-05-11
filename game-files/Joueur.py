@@ -77,6 +77,8 @@ class Joueur:
 
     def get_angle_deg(self):
         return math.degrees(math.atan2(self.dirY, self.dirX)) % 360
+    def mort(self):
+        return self.vie <= 0
 
     def update(self):
         if self.stamina<1:
