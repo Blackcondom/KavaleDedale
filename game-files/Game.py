@@ -58,6 +58,11 @@ class Game:
         if self.isPlaying:          # Si aucun menu ouvert
             self.joueur.update()
             self.ents.update_ents()
+	if self.joueur.mort():
+            self.running = False
+            a = GAME_OVER(HEIGHT,WIDTH,self)
+            a.loop()
+
 
     def rendu(self):
         self.renderer.rendu()
